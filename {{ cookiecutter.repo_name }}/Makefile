@@ -1,4 +1,4 @@
-.PHONY: clean data lint requirements download_data pipeline
+.PHONY: clean data lint requirements fetch_data pipeline
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -24,7 +24,7 @@ requirements: test_environment
 
 ## Make Dataset
 data:
-	download_data
+	fetch_data
 	pipeline
 
 ## Delete all compiled Python files
@@ -34,20 +34,22 @@ clean:
 
 ## Lint using flake8
 lint:
+	eval "$(conda shell.bash hook)"
+	conda activate $(PROJECT_NAME)
 	flake8 src
 
-download_data:
-	echo "Implement download of data"
+fetch_data:
+	echo "Implement fetch of data"
 	# some suggested commands
 	# ln -s --relative /path/to/your/data data/
-	# wget 
+	# wget https://url.com/of/your/data
 
 ## Set up python interpreter environment
 create_environment:
 ifeq (True,$(HAS_CONDA))
 	@echo ">>> Detected conda, creating conda environment."
 	conda create -f environment.yaml
-	@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
+	@echo ">>> New conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
 else
 	@echo "Error: conda not detected. Exiting. "
 	exit 1
@@ -55,6 +57,8 @@ endif
 
 ## Test python environment is setup correctly
 test_environment:
+	eval "$(conda shell.bash hook)"
+	conda activate $(PROJECT_NAME)
 	python3 test_environment.py
 
 #################################################################################
@@ -66,7 +70,7 @@ pipeline:
 	echo "Implement running of pipeline"	
 	# suggested commands as follows
 	#module load snakemake # specific to MPI-IE infrastructure
-	#snakemake -s workflow/Snakefile --profile /path/to/mpi-ie-slurm/mpi-ie-slurm all
+	#snakemake -s workflow/Snakefile -j 1 --workdir workflow --profile /path/to/mpi-ie-slurm/mpi-ie-slurm all
 
 #################################################################################
 # Self Documenting Commands                                                     #
