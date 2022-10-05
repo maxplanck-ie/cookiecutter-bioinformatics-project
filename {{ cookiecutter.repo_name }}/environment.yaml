@@ -1,0 +1,7 @@
+name: {{ cookiecutter.project_name }} 
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3
