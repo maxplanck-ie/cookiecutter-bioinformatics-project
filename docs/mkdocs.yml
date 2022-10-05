@@ -1,0 +1,12 @@
+site_name: Cookiecutter Bioinformatics
+site_description: A project template and directory structure for Python bioinformatics projects.
+site_favicon: favicon.ico
+repo_url: https://github.com/maxplanck-ie/cookiecutter-bioinformatics
+edit_uri: edit/master/docs/docs
+copyright: Project maintained by the Max Planck Institute of Immunobiology and Epigenetics Bioinformatics Core Facility.  
+google_analytics: ['UA-54096005-4', 'auto']
+theme: cinder
+extra_css:
+  - css/extra.css
+pages:
+  - Home: index.md

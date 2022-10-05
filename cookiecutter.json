@@ -1,0 +1,14 @@
+{
+    "project_name": "project_name",
+    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "author_name": "Your name (or your organization/company/team)",
+    "orcid": "Your ORCID",
+    "description": "A short description of the project.",
+    "open_source_license": [
+        "MIT",
+        "BSD-3-Clause",
+        "Apache-2",
+        "GPLv3",
+        "No license file"
+    ],
+}
