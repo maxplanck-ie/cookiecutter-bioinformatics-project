@@ -4,7 +4,7 @@ _A logical, reasonably standardized, but flexible project structure for doing an
 
 This cookiecutter template was developed by the [Max Planck Institute of Immunobiology and Epigenetics Bioinformatics Core Facility](https://www.ie-freiburg.mpg.de/bioinformatics) with the aim of establishing a standardized project directory structure within the institute. It is a fork of [cookiecutter-fair-data-science](https://github.com/FAIR4HEP/cookiecutter-fair-data-science), with a healthy dose of [Snakemake workflow best practices](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#distribution-and-reproducibility) mixed in. There is less focus on building a python package that can train and run machine learning models, but rather on building bioinformatics workflows that can run on the MPI-IE cluster according to [FAIR principles](https://www.go-fair.org/fair-principles/). 
 
-#### [Project homepage](http://drivendata.github.io/cookiecutter-data-science/)
+#### [Project homepage](https://github.com/dkoppstein/cookiecutter-bioinformatics-project)
 
 
 ### Requirements to use the cookiecutter template:
@@ -28,7 +28,7 @@ On the MPI-IE infrastructure, you can also run `module load cookiecutter`.
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/maxplanck-ie/cookiecutter-bioinformatics
+    cookiecutter gh:maxplanck-ie/cookiecutter-bioinformatics-project
 
 
 ### The resulting directory structure
@@ -37,20 +37,23 @@ On the MPI-IE infrastructure, you can also run `module load cookiecutter`.
 The directory structure of your new project looks like this: 
 
 ```
+├── CITATION.cff       <- Contains metadata on how the project might eventually be published. 
 ├── LICENSE
 ├── Makefile           <- Makefile with commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+├── config             <- Configuration options for the analysis. 
+|   ├── config.yaml    <- Snakemake config file. 
+|   └── samples.tsv    <- A metadata table for all the samples run in the analysis.  
 │
 ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── environment.yaml   <- The requirements file for reproducing the analysis environment, e.g.
+│                         generated with `conda env export > environment.yaml`
 │
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
+├── img                <- A place to store images associated with the project/pipeline, e.g. a 
+│                         a figure of the pipeline DAG. 
+│
+├── notebooks          <- Jupyter or Rmd notebooks. Naming convention is a number (for ordering),
 │                         the creator's initials, and a short `-` delimited description, e.g.
 │                         `1.0-jqp-initial-data-exploration`.
 │
@@ -59,28 +62,21 @@ The directory structure of your new project looks like this:
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures        <- Generated graphics and figures to be used in reporting
 │
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
+├── resources          <- Place for data. By default excluded from the git repository. 
+│   ├── external       <- Data from third party sources.
+│   └── raw_data       <- The original, immutable data dump.
+├── results            <- Final . 
 ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
 ├── src                <- Source code for use in this project.
 │   ├── __init__.py    <- Makes src a Python module
-│   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
-│   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
-│   │
-│   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
-│   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
+├── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 │
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+├── workflow           <- Place to store the main pipeline for rerunning all the analysis. 
+│   ├── envs           <- Contains different conda environments in .yaml format for running the pipeline. 
+│   ├── rules          <- Contains .smk files that are included by the main Snakefile, including common.smk for functions. 
+│   ├── scripts        <- Contains different R or python scripts used by the script: directive in Snakemake.
+│   ├── Snakefile      <- Contains the main entrypoint to the pipeline. 
+│── workspace          <- Space for intermediate results in the pipeline. By default excluded from the git repository.  
 ```
 
 ## Contributing
