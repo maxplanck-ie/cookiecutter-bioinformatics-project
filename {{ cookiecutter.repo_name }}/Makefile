@@ -48,8 +48,9 @@ fetch_data:
 create_environment:
 ifeq (True,$(HAS_CONDA))
 	@echo ">>> Detected conda, creating conda environment."
-	conda create -f environment.yaml
-	@echo ">>> New conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
+	conda env create -f environment.yaml
+	@echo ">>> New conda env created. Activate with: "
+	@echo "conda activate $(PROJECT_NAME)"
 else
 	@echo "Error: conda not detected. Exiting. "
 	exit 1
