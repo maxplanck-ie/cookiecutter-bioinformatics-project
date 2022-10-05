@@ -13,6 +13,9 @@ else
 HAS_CONDA=True
 endif
 
+CONDA_ACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate
+
+
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
@@ -38,6 +41,7 @@ lint:
 	conda activate $(PROJECT_NAME)
 	flake8 src
 
+## Fetch the raw data, either from local or remote sources. IMPLEMENT ME!
 fetch_data:
 	echo "Implement fetch of data"
 	# some suggested commands
@@ -66,7 +70,7 @@ test_environment:
 # PROJECT RULES                                                                 #
 #################################################################################
 
-
+## Execute the data pipeline. IMPLEMENT ME!
 pipeline:
 	echo "Implement running of pipeline"	
 	# suggested commands as follows
