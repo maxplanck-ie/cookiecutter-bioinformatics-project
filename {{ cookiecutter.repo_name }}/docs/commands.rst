@@ -3,7 +3,8 @@ Commands
 
 The Makefile contains the central entry points for common tasks related to this project.
 
-Downloading data 
+Data Pipeline 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* `make download_data` needs to be implemented.
+* `make fetch_data` needs to be implemented.
+* `make pipeline` needs to be implemented. 

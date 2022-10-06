@@ -15,6 +15,12 @@ endif
 
 CONDA_ACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate
 
+# use this function to load modules on the cluster
+# usage in Makefile: $(call module-load,snakemake) && snakemake -j1 ...
+define module-load
+        eval `/usr/bin/modulecmd bash load $(1)`
+endef
+
 
 #################################################################################
 # COMMANDS                                                                      #
