@@ -91,3 +91,5 @@ target/
 # workflow-specific directories
 workspace/
 resources/
+results/
+sandbox/
